@@ -1,11 +1,12 @@
 # 🌤️ Weather Application
 
-### A beautiful, feature-rich Flutter weather app with offline caching, live GPS, city search & smart notifications
+### A beautiful, feature-rich Flutter weather app with offline caching, live GPS, city search, smart notifications & AI weather assistant
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.10.4+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![Riverpod](https://img.shields.io/badge/Riverpod-State_Mgmt-00B4D8?style=for-the-badge)](https://riverpod.dev)
 [![SQLite](https://img.shields.io/badge/SQLite-Offline_Cache-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://pub.dev/packages/sqflite)
+[![Gemini](https://img.shields.io/badge/Gemini-AI_Assistant-8E44AD?style=for-the-badge&logo=google&logoColor=white)](https://pub.dev/packages/flutter_gemini)
 [![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge)](https://github.com/Talhaarif326/Weather-Application)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/Talhaarif326/Weather-Application/blob/main/LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://android.com)
@@ -24,7 +25,7 @@
 
 A production-grade Flutter weather app that delivers real-time weather data using the **OpenWeatherMap OneCall 3.0 API**. Built with a clean Riverpod state management architecture, it works seamlessly **online and offline** — showing cached data with a "last updated" timestamp when there's no internet connection.
 
-The app is designed around real user needs: it asks for your name once (first launch only), remembers your saved cities, and lets you toggle between °C and °F across every screen instantly.
+The app is designed around real user needs: it asks for your name once (first launch only), remembers your saved cities, lets you toggle between °C and °F across every screen instantly, and includes a built-in **AI weather assistant** powered by Google Gemini.
 
 ---
 
@@ -60,6 +61,17 @@ The app is designed around real user needs: it asks for your name once (first la
 - Toggle notifications and alerts independently from Settings
 - Uses `flutter_local_notifications` ^17.2.0
 
+### 🤖 AI Weather Assistant (Gemini)
+- Dedicated **Weather Assistant** screen powered by **Google Gemini**
+- Chat interface where users can ask natural-language questions about their weather
+- On first open, automatically sends a weather summary request — no typing required
+- Full current weather context (current conditions, 48-hour hourly, 7-day weekly) is sent to Gemini on the first message, so all follow-up questions stay in context without re-fetching
+- Persistent **chat history** maintained throughout the session for multi-turn conversations
+- Weather data passed directly from the Riverpod `weatherProvider` — always in sync with what's on screen
+- Responses use familiar units (°C/°F, km/h) consistent with the rest of the app
+- Glassmorphism-style input bar and bubble UI matching the app's design language
+- Accessible from other screens via a navigation tap — opens with an automatic greeting
+
 ### 👤 First-Launch Welcome
 - Name screen shown only once — stored in SQLite `users` table
 - Subsequent launches skip straight to the home screen
@@ -78,6 +90,7 @@ The app is designed around real user needs: it asks for your name once (first la
 | `geolocator` | ^14.0.2 | Live GPS location |
 | `geocoding` | ^4.0.0 | City name ↔ coordinates conversion |
 | `http` | ^1.6.0 | OpenWeatherMap API calls |
+| `flutter_gemini` | latest | Google Gemini AI chat integration |
 | `flutter_local_notifications` | ^17.2.0 | Push notifications |
 | `flutter_dotenv` | ^6.0.0 | API key management via `.env` |
 | `flutter_svg` | ^2.3.0 | SVG weather condition icons |
@@ -102,21 +115,23 @@ weather_cache   → id, location_id, json_data, last_updated
 lib/
 ├── core/
 │   └── utils/
-│       └── temp_converter.dart       # Kelvin → °C/°F conversion
+│       └── temp_converter.dart           # Kelvin → °C/°F conversion
 ├── database/
-│   └── db_helper.dart                # All SQLite logic (singleton)
+│   └── db_helper.dart                    # All SQLite logic (singleton)
 ├── models/
-│   └── weather_model.dart            # App state model
+│   └── weather_model.dart                # App state model
 ├── providers/
-│   ├── weather_provider.dart         # StateNotifier — GPS, API, cache, search
-│   └── icons_colors_provider.dart    # Weather condition → icon/color mapping
+│   ├── weather_provider.dart             # StateNotifier — GPS, API, cache, search
+│   └── icons_colors_provider.dart        # Weather condition → icon/color mapping
 ├── screens/
-│   ├── welcome_screen.dart           # First-launch name entry
-│   ├── main_screen.dart              # Bottom navigation host
-│   ├── home_screen.dart              # Current weather + search
-│   ├── weather_screen.dart           # Weekly forecast
-│   └── setting_screen.dart           # Preferences, locations, notifications
+│   ├── welcome_screen.dart               # First-launch name entry
+│   ├── main_screen.dart                  # Bottom navigation host
+│   ├── home_screen.dart                  # Current weather + search
+│   ├── weather_screen.dart               # Weekly forecast
+│   ├── gemini_screen.dart                # AI weather assistant (Gemini chat)
+│   └── setting_screen.dart               # Preferences, locations, notifications
 └── widgets/
+    ├── chat_message_bubble.dart          # Chat bubble for Gemini screen
     ├── hours_card_widget.dart
     ├── weekly_weather_card_widget.dart
     ├── today_weather_detail_widget.dart
@@ -127,17 +142,20 @@ lib/
 
 ## 🔑 API Setup
 
-This app uses the **OpenWeatherMap OneCall 3.0 API**, which requires a free account and a valid API key.
+This app uses two external APIs — both require keys.
 
+### OpenWeatherMap
 1. Sign up at [openweathermap.org](https://openweathermap.org/)
 2. Go to **API Keys** in your account dashboard
-3. Generate a key (or use the default one)
-4. Make sure **One Call API 3.0** is enabled for your key (requires subscription, free tier available)
+3. Make sure **One Call API 3.0** is enabled for your key
+
+### Google Gemini
+1. Get an API key from [Google AI Studio](https://aistudio.google.com/)
+2. Add it to your `.env` file (see below)
 
 ---
 
 ## 🚀 Getting Started
-
 
 ### 1. Clone the repo
 
@@ -150,8 +168,8 @@ cd Weather-Application
 
 ```env
 apiKey=your_openweathermap_api_key_here
+geminiKey=your_google_gemini_api_key_here
 ```
-
 
 ### 3. Add notification permission (Android 13+)
 
@@ -201,10 +219,15 @@ fetchWeather()
                    → OpenWeatherMap OneCall 3.0 API (http)
                    → cache response in SQLite (sqflite)
                    → update all screens via Riverpod state
+
+GeminiScreen (AI Assistant)
+└── Reads weatherProvider state (current + hourly + weekly)
+    └── isClickedFromOtherScreen = true → auto-sends weather summary prompt
+        └── First message bundles full weather context → Gemini API
+            └── Follow-up messages use chat history (no re-fetch needed)
 ```
 
 ---
-
 
 ## 🤝 Contributing
 
@@ -233,6 +256,6 @@ This project is licensed under the **MIT License** — see [LICENSE](https://git
 
 ---
 
-Built with ❤️ using Flutter & OpenWeatherMap
+Built with ❤️ using Flutter, OpenWeatherMap & Google Gemini
 
 ⭐ Star this repo if you found it useful!
