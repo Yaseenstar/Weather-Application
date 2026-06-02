@@ -1,29 +1,22 @@
-<div align="center">
-
 # 🌤️ Weather Application
 
 ### A beautiful, feature-rich Flutter weather app with offline caching, live GPS, city search & smart notifications
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
-[![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.10.4+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![Riverpod](https://img.shields.io/badge/Riverpod-State_Mgmt-00B4D8?style=for-the-badge)](https://riverpod.dev)
 [![SQLite](https://img.shields.io/badge/SQLite-Offline_Cache-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://pub.dev/packages/sqflite)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge)](https://github.com/Talhaarif326/Weather-Application)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/Talhaarif326/Weather-Application/blob/main/LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://android.com)
-
-</div>
 
 ---
 
 ## 📸 Screenshots
 
-<div align="center">
-
 | Home Screen | Weekly Forecast | Forecast Expanded | Settings |
-|:-----------:|:---------------:|:-----------------:|:--------:|
-| <img src="screenshots/home_screen.jpeg" width="200"/> | <img src="screenshots/weekly_forecast.jpeg" width="200"/> | <img src="screenshots/weekly_expanded.jpeg" width="200"/> | <img src="screenshots/settings.jpeg" width="200"/> |
-
-</div>
+|---|---|---|---|
+| ![Home](screenshots/home_screen.jpeg) | ![Weekly](screenshots/weekly_forecast.jpeg) | ![Expanded](screenshots/weekly_expanded.jpeg) | ![Settings](screenshots/settings.jpeg) |
 
 ---
 
@@ -45,7 +38,7 @@ The app is designed around real user needs: it asks for your name once (first la
 
 ### 🌡️ Weather Data
 - Current temperature, feels like, humidity, UV index, pressure, visibility
-- **48-hour hourly forecast** with weather icons
+- **48-hour hourly forecast** with weather icons (SVG)
 - **7-day weekly forecast** with expandable daily detail cards
 - Sunrise & sunset times, wind data, and weather alerts
 - All data from **OpenWeatherMap OneCall 3.0**
@@ -65,7 +58,7 @@ The app is designed around real user needs: it asks for your name once (first la
 - Weather update notification with current city + temperature
 - Weather alerts notification when active alerts are present in API response
 - Toggle notifications and alerts independently from Settings
-- Uses `flutter_local_notifications`
+- Uses `flutter_local_notifications` ^17.2.0
 
 ### 👤 First-Launch Welcome
 - Name screen shown only once — stored in SQLite `users` table
@@ -77,24 +70,27 @@ The app is designed around real user needs: it asks for your name once (first la
 ## 🛠️ Tech Stack
 
 | Package | Version | Purpose |
-|---------|---------|---------|
-| `flutter_riverpod` | ^2.x | State management (StateNotifier) |
-| `sqflite` + `path` | ^2.3.3 | SQLite offline caching & user data |
+|---|---|---|
+| `flutter_riverpod` | ^3.2.1 | State management (StateNotifier) |
+| `riverpod` | ^3.1.0 | Core Riverpod library |
+| `sqflite` + `path` | ^2.3.3 / ^1.9.0 | SQLite offline caching & user data |
 | `connectivity_plus` | ^6.0.3 | Internet connection detection |
-| `geolocator` + `geolocator_android` | ^13.x | Live GPS location |
-| `geocoding` | ^3.x | City name ↔ coordinates conversion |
-| `http` | ^1.x | OpenWeatherMap API calls |
-| `flutter_local_notifications` | ^17.x | Push notifications |
-| `flutter_dotenv` | ^5.x | API key management via `.env` |
-| `intl` | ^0.19 | Date & time formatting |
+| `geolocator` | ^14.0.2 | Live GPS location |
+| `geocoding` | ^4.0.0 | City name ↔ coordinates conversion |
+| `http` | ^1.6.0 | OpenWeatherMap API calls |
+| `flutter_local_notifications` | ^17.2.0 | Push notifications |
+| `flutter_dotenv` | ^6.0.0 | API key management via `.env` |
+| `flutter_svg` | ^2.3.0 | SVG weather condition icons |
+| `intl` | ^0.20.2 | Date & time formatting |
+| `cupertino_icons` | ^1.0.8 | iOS-style icons |
 
 ---
 
 ## 🗄️ Database Schema
 
-```
-users           → id, name                           (1 row max — first launch only)
-locations       → id, city_name, lat, lon, is_current (GPS + saved cities)
+```sql
+users           → id, name                            -- 1 row max (first launch only)
+locations       → id, city_name, lat, lon, is_current -- GPS + saved cities
 weather_cache   → id, location_id, json_data, last_updated
 ```
 
@@ -129,27 +125,38 @@ lib/
 
 ---
 
+## 🔑 API Setup
+
+This app uses the **OpenWeatherMap OneCall 3.0 API**, which requires a free account and a valid API key.
+
+1. Sign up at [openweathermap.org](https://openweathermap.org/)
+2. Go to **API Keys** in your account dashboard
+3. Generate a key (or use the default one)
+4. Make sure **One Call API 3.0** is enabled for your key (requires subscription, free tier available)
+
+---
+
 ## 🚀 Getting Started
 
-### Prerequisites
-- Flutter SDK 3.x
-- Android device (notifications unreliable on emulator)
-- OpenWeatherMap API key (OneCall 3.0)
 
 ### 1. Clone the repo
+
 ```bash
-git clone https://github.com/talhaarif326/weather_application.git
-cd weather_application
+git clone https://github.com/Talhaarif326/Weather-Application.git
+cd Weather-Application
 ```
 
-### 2. Create `.env` file in project root
+### 2. Create a `.env` file in the project root
+
 ```env
 apiKey=your_openweathermap_api_key_here
 ```
 
+
 ### 3. Add notification permission (Android 13+)
 
 In `android/app/src/main/AndroidManifest.xml`:
+
 ```xml
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 ```
@@ -157,7 +164,8 @@ In `android/app/src/main/AndroidManifest.xml`:
 ### 4. Enable core library desugaring
 
 In `android/app/build.gradle`:
-```kotlin
+
+```groovy
 compileOptions {
     isCoreLibraryDesugaringEnabled = true
     sourceCompatibility = JavaVersion.VERSION_17
@@ -169,7 +177,8 @@ dependencies {
 }
 ```
 
-### 5. Install & run
+### 5. Install dependencies & run
+
 ```bash
 flutter pub get
 flutter run
@@ -186,34 +195,44 @@ App Launch
     └── No name      → WelcomeScreen → save name → MainScreen
 
 fetchWeather()
-└── Check internet
+└── Check internet (connectivity_plus)
     ├── Offline → load SQLite cache → show offline banner
-    └── Online  → GPS location → OpenWeatherMap API
-                   → cache response in SQLite
+    └── Online  → GPS location (geolocator)
+                   → OpenWeatherMap OneCall 3.0 API (http)
+                   → cache response in SQLite (sqflite)
                    → update all screens via Riverpod state
 ```
 
 ---
 
+
 ## 🤝 Contributing
 
+Contributions are welcome! Here's how to get started:
+
 1. Fork the repo
-2. Create a branch: `git checkout -b feat/your-feature`
-3. Commit your changes: `git commit -m "feat: add your feature"`
-4. Push and open a PR
+2. Create a feature branch: `git checkout -b feat/your-feature`
+3. Make your changes and commit: `git commit -m "feat: add your feature"`
+4. Push to your fork: `git push origin feat/your-feature`
+5. Open a Pull Request
+
+Please keep PRs focused — one feature or fix per PR.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License** — see [LICENSE](https://github.com/Talhaarif326/Weather-Application/blob/main/LICENSE) for details.
 
 ---
 
-<div align="center">
+## 👤 Author
+
+**Talha Arif**
+- GitHub: [@Talhaarif326](https://github.com/Talhaarif326)
+
+---
 
 Built with ❤️ using Flutter & OpenWeatherMap
 
 ⭐ Star this repo if you found it useful!
-
-</div>
