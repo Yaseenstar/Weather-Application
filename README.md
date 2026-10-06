@@ -7,8 +7,8 @@
 [![Riverpod](https://img.shields.io/badge/Riverpod-State_Mgmt-00B4D8?style=for-the-badge)](https://riverpod.dev)
 [![SQLite](https://img.shields.io/badge/SQLite-Offline_Cache-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://pub.dev/packages/sqflite)
 [![Gemini](https://img.shields.io/badge/Gemini-AI_Assistant-8E44AD?style=for-the-badge&logo=google&logoColor=white)](https://pub.dev/packages/flutter_gemini)
-[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge)](https://github.com/Talhaarif326/Weather-Application)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/Talhaarif326/Weather-Application/blob/main/LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge)](https://github.com/Yaseenstar/Weather-Application)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/Yaseenstar/Weather-Application/blob/main/LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://android.com)
 
 ---
@@ -160,7 +160,7 @@ This app uses two external APIs — both require keys.
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/Talhaarif326/Weather-Application.git
+git clone https://github.com/Yaseenstar/Weather-Application.git
 cd Weather-Application
 ```
 
@@ -245,14 +245,14 @@ Please keep PRs focused — one feature or fix per PR.
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see [LICENSE](https://github.com/Talhaarif326/Weather-Application/blob/main/LICENSE) for details.
+This project is licensed under the **MIT License** — see [LICENSE](https://github.com/Yaseenstar/Weather-Application/blob/main/LICENSE) for details.
 
 ---
 
 ## 👤 Author
 
-**Talha Arif**
-- GitHub: [@Talhaarif326](https://github.com/Talhaarif326)
+**Yaseen Ahmad**
+- GitHub: [@Yaseenstar](https://github.com/Yaseenstar)
 
 ---
 
