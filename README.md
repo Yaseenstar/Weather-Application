@@ -5,6 +5,12 @@ A beautiful, feature-rich Flutter weather app with offline caching, live GPS, ci
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![Material 3](https://img.shields.io/badge/Material_3-6750A4?style=for-the-badge&logo=materialdesign&logoColor=white)
+![Provider](https://img.shields.io/badge/Provider-13B9FD?style=for-the-badge&logo=flutter&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLITE-OFFLINE%20CACHE-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Gemini](https://img.shields.io/badge/GEMINI-AI%20ASSISTANT-8E44AD?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Version](https://img.shields.io/badge/VERSION-1.0.0-4CAF50?style=for-the-badge)
+![License](https://img.shields.io/badge/LICENSE-MIT-8BC34A?style=for-the-badge)
+![Platform](https://img.shields.io/badge/PLATFORM-ANDROID-2ECC71?style=for-the-badge&logo=android&logoColor=white)
 
 ---
 
