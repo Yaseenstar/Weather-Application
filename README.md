@@ -10,9 +10,9 @@ A beautiful, feature-rich Flutter weather app with offline caching, live GPS, ci
 
 ## 📸 Screenshots
 
-| Home | Forecast | Search |
-|---|---|---|
-| ![Home](screenshots/home.png) | ![Forecast](screenshots/forecast.png) | ![Search](screenshots/search.png) |
+| Home | Settting | Weekly | weekly| 
+|---|---|---|---|
+| ![Home](screenshots/home_screen.jpeg) | ![Setting](screenshots/setting.jpeg) | ![weekly](screenshots/weekly_expanded.jpej) |
 
 ---
 
