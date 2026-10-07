@@ -132,21 +132,19 @@ This app uses two external APIs — both require keys.
 2. Add it to your .env file (see below)
 ---
    ## 🚀 Getting Started
----
+---]
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/Yaseenstar/Weather-Application.git
 cd Weather-Application
 ```
----
 ## 2. Create a .env file in the project root
----
+```bash
 apiKey=your_openweathermap_api_key_here
 geminiKey=your_google_gemini_api_key_here
 
----
 ## 3. Add notification permission (Android 13+)
----
+```bash
 In android/app/src/main/AndroidManifest.xml:
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
