@@ -10,12 +10,22 @@ A beautiful, feature-rich Flutter weather app with offline caching, live GPS, ci
 
 ## 📸 Screenshots
 
-| Home | Settting | Weekly | Forecast| 
-|---|---|---|---|
-| ![Home](screenshots/home_screen.jpeg) | ![Setting](screenshots/setting.jpeg) | ![weekly](screenshots/weekly_expanded.jpej) |![Forecast](screenshots/weekly_forecast.jpeg)
+<table>
+  <tr>
+    <th align="center">Home</th>
+    <th align="center">Setting</th>
+    <th align="center">Weekly</th>
+    <th align="center">Forecast</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/home_screen.jpeg" width="200"></td>
+    <td><img src="screenshots/settings.jpeg" width="200"></td>
+    <td><img src="screenshots/weekly_expanded.jpeg" width="200"></td>
+    <td><img src="screenshots/weekly_forecast.jpeg" width="200"></td>
+  </tr>
+</table>
 
 ---
-
 ## 🌟 Overview
 
 A production-grade Flutter weather app that delivers real-time weather data using the OpenWeatherMap OneCall 3.0 API. Built with a clean Riverpod state management architecture, it works seamlessly online and offline — showing cached data with a "last updated" timestamp when there's no internet connection.
