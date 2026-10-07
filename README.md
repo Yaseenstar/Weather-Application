@@ -93,6 +93,7 @@ weather_cache   → id, location_id, json_data, last_updated
 ---
 ---
 ## 📁 Project Structure
+```bash
 lib/
 ├── core/
 │   └── utils/
@@ -131,14 +132,13 @@ This app uses two external APIs — both require keys.
 1. Get an API key from Google AI Studio
 2. Add it to your .env file (see below)
 ---
-   ## 🚀 Getting Started
----]
-### 1. Clone the repo
+ ### 🚀 Getting Started
+## 1. Clone the repo
 ```bash
 git clone https://github.com/Yaseenstar/Weather-Application.git
 cd Weather-Application
-```
-## 2. Create a .env file in the project root
+
+# 2. Create a .env file in the project root
 ```bash
 apiKey=your_openweathermap_api_key_here
 geminiKey=your_google_gemini_api_key_here
@@ -161,12 +161,12 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
 ## 5. Install dependencies & run
+```bash
 flutter pub get
 flutter run
 
----
-
-## 🔄 Data Flow
+### 🔄 Data Flow
+```bash
 App Launch
 └── Check SQLite users table
     ├── Name exists  → MainScreen (home)
