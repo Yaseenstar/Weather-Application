@@ -2,10 +2,10 @@
 
 A beautiful, feature-rich Flutter weather app with offline caching, live GPS, city search, smart notifications & AI weather assistant
 
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Material 3](https://img.shields.io/badge/Material_3-6750A4?style=for-the-badge&logo=materialdesign&logoColor=white)
-![Provider](https://img.shields.io/badge/Provider-13B9FD?style=for-the-badge&logo=flutter&logoColor=white)
+![Flutter](https://img.shields.io/badge/FLUTTER-3.X-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/DART-3.10.4+-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Riverpod](https://img.shields.io/badge/RIVERPOD-STATE%20MGMT-00B4D8?style=for-the-badge)
+![SQLite](https://img.shields.io/badge/SQLITE-OFFLINE%20CACHE-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLITE-OFFLINE%20CACHE-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Gemini](https://img.shields.io/badge/GEMINI-AI%20ASSISTANT-8E44AD?style=for-the-badge&logo=googlegemini&logoColor=white)
 ![Version](https://img.shields.io/badge/VERSION-1.0.0-4CAF50?style=for-the-badge)
