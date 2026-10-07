@@ -130,15 +130,19 @@ This app uses two external APIs — both require keys.
 ## Google Gemini
 1. Get an API key from Google AI Studio
 2. Add it to your .env file (see below)
+---
+   ## 🚀 Getting Started
+---
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/Yaseenstar/Weather-Application.git
 cd Weather-Application
 ```
 ---
-## 🚀 Getting Started
+## 2. Create a .env file in the project root
 apiKey=your_openweathermap_api_key_here
 geminiKey=your_google_gemini_api_key_here
+
 ## 3. Add notification permission (Android 13+)
 In android/app/src/main/AndroidManifest.xml:
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
@@ -178,7 +182,6 @@ GeminiScreen (AI Assistant)
     └── isClickedFromOtherScreen = true → auto-sends weather summary prompt
         └── First message bundles full weather context → Gemini API
             └── Follow-up messages use chat history (no re-fetch needed)
-      ---
       ---   
    ## 🤝 Contributing
 Contributions are welcome! Here's how to get started:
@@ -190,13 +193,10 @@ Contributions are welcome! Here's how to get started:
 5. Open a Pull Request
 6. Please keep PRs focused — one feature or fix per PR
 ---
----
 ## 📄 License
 This project is licensed under the MIT License — see LICENSE for details.
 
 ---
----
-
 ## 👤 Author
 
 **Yaseen Ahmad**
