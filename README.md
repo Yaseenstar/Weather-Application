@@ -106,7 +106,7 @@ Get an API key from Google AI Studio
 Add it to your .env file (see below)
 🚀 Getting Started
 1. Clone the repo
-git clone https://github.com/Talhaarif326/Weather-Application.git
+git clone https://github.com/Yaseenstar/Weather-Application.git
 cd Weather-Application
 2. Create a .env file in the project root
 apiKey=your_openweathermap_api_key_here
