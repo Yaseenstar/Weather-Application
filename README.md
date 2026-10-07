@@ -140,12 +140,17 @@ cd Weather-Application
 ```
 ---
 ## 2. Create a .env file in the project root
+---
 apiKey=your_openweathermap_api_key_here
 geminiKey=your_google_gemini_api_key_here
 
+---
 ## 3. Add notification permission (Android 13+)
+---
 In android/app/src/main/AndroidManifest.xml:
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+---
 ## 4. Enable core library desugaring
 In android/app/build.gradle:
 compileOptions {
