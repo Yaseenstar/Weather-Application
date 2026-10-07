@@ -85,43 +85,116 @@ Tools       → Git, GitHub, VS Code
 
 ---
 
-## 🚀 Getting Started
+## 🗄️ Database Schema
+users           → id, name                            -- 1 row max (first launch only)
+locations       → id, city_name, lat, lon, is_current -- GPS + saved cities
+weather_cache   → id, location_id, json_data, last_updated
 
+---
+---
+## 📁 Project Structure
+lib/
+├── core/
+│   └── utils/
+│       └── temp_converter.dart           # Kelvin → °C/°F conversion
+├── database/
+│   └── db_helper.dart                    # All SQLite logic (singleton)
+├── models/
+│   └── weather_model.dart                # App state model
+├── providers/
+│   ├── weather_provider.dart             # StateNotifier — GPS, API, cache, search
+│   └── icons_colors_provider.dart        # Weather condition → icon/color mapping
+├── screens/
+│   ├── welcome_screen.dart               # First-launch name entry
+│   ├── main_screen.dart                  # Bottom navigation host
+│   ├── home_screen.dart                  # Current weather + search
+│   ├── weather_screen.dart               # Weekly forecast
+│   ├── gemini_screen.dart                # AI weather assistant (Gemini chat)
+│   └── setting_screen.dart               # Preferences, locations, notifications
+└── widgets/
+    ├── chat_message_bubble.dart          # Chat bubble for Gemini screen
+    ├── hours_card_widget.dart
+    ├── weekly_weather_card_widget.dart
+    ├── today_weather_detail_widget.dart
+    └── ten_days_weather_detail_widget.dart
+    ---
+    ---
+        
+## 🔑 API Setup
+This app uses two external APIs — both require keys.
+
+## OpenWeatherMap
+1. Sign up at openweathermap.org
+2. Go to API Keys in your account dashboard
+3. Make sure One Call API 3.0 is enabled for your key
+## Google Gemini
+1. Get an API key from Google AI Studio
+2. Add it to your .env file (see below)
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/Yaseenstar/Weather-Application.git
 cd Weather-Application
 ```
+---
+## 🚀 Getting Started
+apiKey=your_openweathermap_api_key_here
+geminiKey=your_google_gemini_api_key_here
+## 3. Add notification permission (Android 13+)
+In android/app/src/main/AndroidManifest.xml:
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+## 4. Enable core library desugaring
+In android/app/build.gradle:
+compileOptions {
+    isCoreLibraryDesugaringEnabled = true
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
-### 2. Install dependencies
-```bash
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+}
+## 5. Install dependencies & run
 flutter pub get
-```
-
-### 3. Run the app
-```bash
 flutter run
-```
 
 ---
 
-## 📁 Project Structure
+## 🔄 Data Flow
+App Launch
+└── Check SQLite users table
+    ├── Name exists  → MainScreen (home)
+    └── No name      → WelcomeScreen → save name → MainScreen
 
-```
-lib/
-├── main.dart
-└── ...
-pubspec.yaml
-```
+fetchWeather()
+└── Check internet (connectivity_plus)
+    ├── Offline → load SQLite cache → show offline banner
+    └── Online  → GPS location (geolocator)
+                   → OpenWeatherMap OneCall 3.0 API (http)
+                   → cache response in SQLite (sqflite)
+                   → update all screens via Riverpod state
+
+GeminiScreen (AI Assistant)
+└── Reads weatherProvider state (current + hourly + weekly)
+    └── isClickedFromOtherScreen = true → auto-sends weather summary prompt
+        └── First message bundles full weather context → Gemini API
+            └── Follow-up messages use chat history (no re-fetch needed)
+      ---
+      ---   
+   ## 🤝 Contributing
+Contributions are welcome! Here's how to get started:
+
+1. Fork the repo
+2. Create a feature branch: git checkout -b feat/your-feature
+3. Make your changes and commit: git commit -m "feat: add your feature"
+4. Push to your fork: git push origin feat/your-feature
+5. Open a Pull Request
+6. Please keep PRs focused — one feature or fix per PR
+---
+---
+## 📄 License
+This project is licensed under the MIT License — see LICENSE for details.
 
 ---
-
-## 🗺️ Roadmap
-
-- [ ] Live GPS location
-- [ ] Offline caching
-- [ ] Weather notifications
-
 ---
 
 ## 👤 Author
