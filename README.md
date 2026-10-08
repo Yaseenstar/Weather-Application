@@ -25,7 +25,7 @@ A beautiful, feature-rich Flutter weather app with offline caching, live GPS, ci
     <th align="center">Forecast</th>
   </tr>
   <tr>
-    <td><img src="screenshots/home_screen.jpeg" width="200"></td>
+    <td><img src="screenshots/home_screen.jpg" width="200"></td>
     <td><img src="screenshots/settings.jpeg" width="200"></td>
     <td><img src="screenshots/weekly_expanded.jpeg" width="200"></td>
     <td><img src="screenshots/weekly_forecast.jpeg" width="200"></td>
