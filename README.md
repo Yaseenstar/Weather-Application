@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🌤️ Weather Application
 
 A beautiful, feature-rich Flutter weather app with offline caching, live GPS, city search, smart notifications & AI weather assistant
